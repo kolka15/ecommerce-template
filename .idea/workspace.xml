@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45723bd4-9104-4d33-927b-192aa3e6839c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/collection-preview/collection-preview.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/collection-preview/collection-preview.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/shop/shop-data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/shop/shop-data.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/shop/shop.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/collection-item/collection-item.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/collection-item/collection-item.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/homepage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/homepage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/homepage.styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/homepage/homepage.styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/collection-preview/collection-preview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/collection-preview/collection-preview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/collection-preview/collection-preview.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/collection-preview/collection-preview.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +95,7 @@
       <updated>1564649769635</updated>
       <workItem from="1564649771149" duration="4474000" />
       <workItem from="1564660352842" duration="8069000" />
-      <workItem from="1564674245715" duration="810000" />
+      <workItem from="1564674245715" duration="3444000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1564651786104</created>
@@ -122,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564670437275</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="shop collection">
+      <created>1564675102453</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1564675102453</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +151,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="index page: menu items" />
     <MESSAGE value="react router added" />
-    <option name="LAST_COMMIT_MESSAGE" value="react router added" />
+    <MESSAGE value="shop collection" />
+    <option name="LAST_COMMIT_MESSAGE" value="shop collection" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
