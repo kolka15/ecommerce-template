@@ -35,6 +35,7 @@ class SignUp extends Component {
 
         } catch (e) {
             console.error(e)
+            alert(e.message)
         }
     }
 
@@ -50,7 +51,7 @@ class SignUp extends Component {
         const {displayName, email, password, confirmPassword} = this.state
 
         return (
-            <div className='sign-uo'>
+            <div className='sign-up'>
                 <h2 className='title'>I do not have an account</h2>
                 <span>Sign up with your email and password</span>
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
@@ -60,7 +61,7 @@ class SignUp extends Component {
                         value={displayName}
                         onChange={this.handleChange}
                         label='Display Name'
-                        requried
+                        required
                     />
                     <FormInput
                         type='email'
@@ -68,7 +69,7 @@ class SignUp extends Component {
                         value={email}
                         onChange={this.handleChange}
                         label='Email'
-                        requried
+                        required
                     />
                     <FormInput
                         type='password'
@@ -76,7 +77,7 @@ class SignUp extends Component {
                         value={password}
                         onChange={this.handleChange}
                         label='Password'
-                        requried
+                        required
                     />
                     <FormInput
                         type='password'
@@ -84,7 +85,7 @@ class SignUp extends Component {
                         value={confirmPassword}
                         onChange={this.handleChange}
                         label='Confirm Password'
-                        requried
+                        required
                     />
                     <CustomButton type='submit'>SIGN UP</CustomButton>
                 </form>
