@@ -5,6 +5,8 @@ import './sign-in.scss';
 import {signInWithGoogle, auth} from "../../firebase/firebase"
 import FormInput from '../form-input/form-input';
 import CustomButton from "../custom-button/custom-button"
+import {connect} from "react-redux"
+import {Redirect} from 'react-router-dom'
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -12,7 +14,8 @@ class SignIn extends React.Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            justLoggedIn: false
         };
     }
 
@@ -23,7 +26,7 @@ class SignIn extends React.Component {
 
         try {
             await auth.signInWithEmailAndPassword(email, password)
-            this.setState({ email: '', password: '' });
+            this.setState({email: '', password: ''});
 
         } catch (e) {
             console.error(e)
@@ -32,44 +35,63 @@ class SignIn extends React.Component {
     };
 
     handleChange = event => {
-        const { value, name } = event.target;
+        const {value, name} = event.target;
 
-        this.setState({ [name]: value });
+        this.setState({[name]: value});
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.currentUser && prevProps.currentUser === null) {
+            this.setState({justLoggedIn: true})
+        }
+        console.log(
+            'this.props.currentUser ', this.props.currentUser,
+            'prevProps ', prevProps,
+        );
+    }
 
     render() {
         return (
-            <div className='sign-in'>
-                <h2 className='title'>I already have an account</h2>
-                <span>Sign in with your email and password</span>
+            <>
+                {
+                    this.state.justLoggedIn && <Redirect to='/'/>
+                }
+                <div className='sign-in'>
+                    <h2 className='title'>I already have an account</h2>
+                    <span>Sign in with your email and password</span>
 
-                <form onSubmit={this.handleSubmit}>
-                    <FormInput
-                        name='email'
-                        type='email'
-                        handleChange={this.handleChange}
-                        value={this.state.email}
-                        label='email'
-                        required
-                    />
-                    <FormInput
-                        name='password'
-                        type='password'
-                        value={this.state.password}
-                        handleChange={this.handleChange}
-                        label='password'
-                        required
-                    />
-                    <div className='buttons'>
-                        <CustomButton type='submit'> Sign in </CustomButton>
-                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
-                            Sign in with Google
-                        </CustomButton>
-                    </div>
-                </form>
-            </div>
+                    <form onSubmit={this.handleSubmit}>
+                        <FormInput
+                            name='email'
+                            type='email'
+                            handleChange={this.handleChange}
+                            value={this.state.email}
+                            label='email'
+                            required
+                        />
+                        <FormInput
+                            name='password'
+                            type='password'
+                            value={this.state.password}
+                            handleChange={this.handleChange}
+                            label='password'
+                            required
+                        />
+                        <div className='buttons'>
+                            <CustomButton type='submit'> Sign in </CustomButton>
+                            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                                Sign in with Google
+                            </CustomButton>
+                        </div>
+                    </form>
+                </div>
+            </>
         );
     }
 }
 
-export default SignIn;
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(SignIn)
