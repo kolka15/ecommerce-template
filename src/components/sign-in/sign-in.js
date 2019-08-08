@@ -40,12 +40,20 @@ class SignIn extends React.Component {
         this.setState({[name]: value});
     };
 
+    clearFormFields = () => (
+        this.setState({
+            email: '',
+            password: '',
+        })
+    )
+
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.currentUser && prevProps.currentUser === null) {
             this.setState({justLoggedIn: true})
         }
         console.log(
             'this.props.currentUser ', this.props.currentUser,
+            'this.state.justLoggedIn', this.state.justLoggedIn,
             'prevProps ', prevProps,
         );
     }
@@ -79,7 +87,10 @@ class SignIn extends React.Component {
                         />
                         <div className='buttons'>
                             <CustomButton type='submit'> Sign in </CustomButton>
-                            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                            <CustomButton onClick={() => {
+                                this.clearFormFields();
+                                signInWithGoogle()
+                            }} isGoogleSignIn>
                                 Sign in with Google
                             </CustomButton>
                         </div>
