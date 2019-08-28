@@ -5,7 +5,6 @@ import CollectionPreview from "../../components/collection-preview/collection-pr
 import {connect} from "react-redux"
 import {selectCollections} from "../../redux/shop/shop.selectors"
 import {createStructuredSelector} from "reselect"
-import {selectDirectorySection} from "../../redux/directory/directory.selectors"
 
 const ShopPage = ({collections}) => (
     <div className='shop-page'>
