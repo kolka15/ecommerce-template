@@ -41,5 +41,9 @@
   .remove-button {
     padding-left: 12px;
     cursor: pointer;
+    transition: all .3s;
+    &:hover {
+      color: red;
+    }
   }
 }
