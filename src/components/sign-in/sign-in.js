@@ -2,7 +2,7 @@ import React from 'react';
 
 import './sign-in.scss';
 
-import {signInWithGoogle, auth} from "../../firebase/firebase"
+import {signInWithGoogle, auth} from "../../firebase/firebase.utils"
 import FormInput from '../form-input/form-input';
 import CustomButton from "../custom-button/custom-button"
 import {connect} from "react-redux"
@@ -51,11 +51,6 @@ class SignIn extends React.Component {
         if (this.props.currentUser && prevProps.currentUser === null) {
             this.setState({justLoggedIn: true})
         }
-        console.log(
-            'this.props.currentUser ', this.props.currentUser,
-            'this.state.justLoggedIn', this.state.justLoggedIn,
-            'prevProps ', prevProps,
-        );
     }
 
     render() {
