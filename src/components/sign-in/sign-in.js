@@ -1,104 +1,83 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './sign-in.scss';
 
 import FormInput from '../form-input/form-input';
 import CustomButton from "../custom-button/custom-button"
 import {connect} from "react-redux"
-import {Redirect} from 'react-router-dom'
 import {googleSignInStart, emailSignInStart} from "../../redux/user/user.actions"
 
 
-class SignIn extends React.Component {
-    constructor(props) {
-        super(props);
+const SignIn = ({emailSignInStart, googleSignInStart}) => {
 
-        this.state = {
-            email: '',
-            password: '',
-            justLoggedIn: false
-        };
-    }
+    const [userCredentials, setCredentials] = useState({email: '', password: ''})
+    const {email, password} = userCredentials
 
-    handleSubmit = async event => {
+
+    const handleSubmit = async event => {
         event.preventDefault();
-        const {emailSignInStart} = this.props
-        const {email, password} = this.state
 
         emailSignInStart(email, password)
 
     };
 
-    handleChange = event => {
-        const {value, name} = event.target;
+    const handleChange = event => {
+        const {value, name} = event.target
 
-        this.setState({[name]: value});
+        setCredentials({...userCredentials, [name]: value})
     };
 
-    clearFormFields = () => (
+    const clearFormFields = () => (
         this.setState({
             email: '',
             password: '',
         })
     )
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.currentUser && prevProps.currentUser === null) {
-            this.setState({justLoggedIn: true})
-        }
-    }
+    return (
+        <>
+            <div className='sign-in'>
+                <h2 className='title'>I already have an account</h2>
+                <span>Sign in with your email and password</span>
 
-    render() {
-        const {googleSignInStart} = this.props
-        return (
-            <>
-                {
-                    this.state.justLoggedIn && <Redirect to='/'/>
-                }
-                <div className='sign-in'>
-                    <h2 className='title'>I already have an account</h2>
-                    <span>Sign in with your email and password</span>
+                <form onSubmit={handleSubmit}>
+                    <FormInput
+                        name='email'
+                        type='email'
+                        handleChange={handleChange}
+                        value={email}
+                        label='email'
+                        required
+                    />
+                    <FormInput
+                        name='password'
+                        type='password'
+                        value={password}
+                        handleChange={handleChange}
+                        label='password'
+                        required
+                    />
+                    <div className='buttons'>
+                        <CustomButton type='submit'> Sign in </CustomButton>
+                        <CustomButton onClick={() => {
+                            clearFormFields();
+                            googleSignInStart()
+                        }} isGoogleSignIn>
+                            Sign in with Google
+                        </CustomButton>
+                    </div>
+                </form>
+            </div>
+        </>
+    );
 
-                    <form onSubmit={this.handleSubmit}>
-                        <FormInput
-                            name='email'
-                            type='email'
-                            handleChange={this.handleChange}
-                            value={this.state.email}
-                            label='email'
-                            required
-                        />
-                        <FormInput
-                            name='password'
-                            type='password'
-                            value={this.state.password}
-                            handleChange={this.handleChange}
-                            label='password'
-                            required
-                        />
-                        <div className='buttons'>
-                            <CustomButton type='submit'> Sign in </CustomButton>
-                            <CustomButton onClick={() => {
-                                this.clearFormFields();
-                                googleSignInStart()
-                            }} isGoogleSignIn>
-                                Sign in with Google
-                            </CustomButton>
-                        </div>
-                    </form>
-                </div>
-            </>
-        );
-    }
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
-})
+
 
 const mapDispatchToProps = dispatch => ({
     googleSignInStart: () => dispatch(googleSignInStart()),
     emailSignInStart: (email, password) => dispatch(emailSignInStart({email, password})),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(null, mapDispatchToProps)(SignIn)
